@@ -11,7 +11,7 @@ def after_sign_in_path_for(resource)
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :birth_date, :mobile_no, :gender ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :birth_date, :mobile_no, :gender, :uid, :provider, :name, :image ])
     #devise_parameter_sanitizer.permit(:sign_in, keys: [:username])
     #devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :company_id, :role_id, :start_date, :end_date, :monthly_charge, :notes, :image_id, :active])
   end
