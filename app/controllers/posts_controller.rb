@@ -28,13 +28,10 @@ class PostsController < ApplicationController
   def create
     
     @post = Post.new(post_params)
-        @post.user_id=current_user.id
-
-
+    @post.user_id=current_user.id
     #respond_to do |format|
-       @post.save
+    @post.save
     redirect_to new_post_path
-
        # format.html { redirect_to @post, notice: 'Post was successfully created.' }
         #format.json { render :show, status: :created, location: @post }
       #else
@@ -60,12 +57,26 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1
   # DELETE /posts/1.json
+  
+
   def destroy
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+      @post = Post.find(params[:id])
+      @post.liked_by current_user
+      redirect_to @post
+  end
+
+  def downvote
+      @post = Post.find(params[:id])
+      @post.downvote_from current_user
+      redirect_to @post
   end
 
   private
