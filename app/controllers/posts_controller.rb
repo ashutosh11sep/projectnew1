@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    #byebug
     @posts = Post.all
   end
 
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
-  def create
+  def create 
     
     @post = Post.new(post_params)
     @post.user_id=current_user.id
@@ -67,15 +68,22 @@ class PostsController < ApplicationController
     end
   end
 
+ 
   def upvote
+    #byebug
       @post = Post.find(params[:id])
       @post.liked_by current_user
+      @post.votes_for.size 
+     #@post.votes_for.up.by_type current_user
       redirect_to @post
   end
 
   def downvote
+  #byebug
       @post = Post.find(params[:id])
       @post.downvote_from current_user
+      @post.votes_for.size 
+     #@post.votes_for.down.by_type current_user
       redirect_to @post
   end
 
