@@ -10,17 +10,22 @@
   <%= @post.descrption %>
 </p>
 
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @post.image %>
+</p>
+
  
- <% if @post.votes_for.where(voter_id: current_user.id).first.vote_flag == true %>
+ <% #if @post.votes_for.where(voter_id: current_user.id).first.vote_flag == true %>
    <%= link_to "Dislike", dislike_post_path(@post), method: :put %>
    <%= @post.votes_for.size %> 
   
- <% else%>
+ <% #else%>
     <%= link_to "Like", like_post_path(@post), method: :put %>
     <%= @post.votes_for.size %>
     
 
- <% end %>
+ <%# end %>
 
 
 

@@ -61,3 +61,5 @@ gem 'devise'
 
 gem 'omniauth-facebook'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'carrierwave', '~> 1.0'
+
