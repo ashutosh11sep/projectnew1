@@ -1,0 +1,5 @@
+# String URL
+Emoji.asset_host = 'http://mysite.com'
+
+# Custom Host Proc, takes asset path as a param
+Emoji.asset_host = lambda {|path| path.size % 2 == 0 ? 'http://even.com' : 'http://odd.com'}

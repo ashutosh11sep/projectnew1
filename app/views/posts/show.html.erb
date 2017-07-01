@@ -29,9 +29,12 @@
 
 <%= form_for([@post, @post.comments.build]) do |f| %>
   
-  <p>
+  
+  <p class="emoji-picker-container">
     <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment, class: 'form-control', data: { emojiable: true } %>
+      <%#= "Post comment: #{content_with_emoji(@post.comments)}".html_safe %>
+        
   </p>
   <p>
     <%= f.submit %>

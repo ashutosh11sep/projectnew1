@@ -13,6 +13,9 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require rails_emoji_picker
+//= require_tree .
 /*!
  * classie v1.0.0
  * class helper functions
