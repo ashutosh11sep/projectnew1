@@ -6,7 +6,8 @@ def create
     @comment = @post.comments.new(comment_params)
     @comment.user_id =current_user.id
     @comment.save    
-    redirect_to new_post_comment
+    redirect_to post_path(@post)
+
 end
 
 private
