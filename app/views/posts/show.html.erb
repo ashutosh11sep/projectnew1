@@ -15,6 +15,31 @@
   <%= image_tag @post.image %>
 </p>
 
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+
+ 
+<p>
+  <strong>Comment:</strong>
+  <%= comment.comment %>
+</p>
+
+<% end %>
+ 
+
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  
+  <p>
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+ 
+
+
  
  <% #if @post.votes_for.where(voter_id: current_user.id).first.vote_flag == true %>
    <%= link_to "Dislike", dislike_post_path(@post), method: :put %>

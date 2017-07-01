@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :posts
+  #resources :posts
   #devise_for :users
   get 'home/index'
   root 'home#index'
@@ -9,6 +9,11 @@ devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_call
 #resources :posts do
    #resources :votes
    #end
+
+resources :posts do
+  resources :comments
+end
+
 
    resources :post do
     member do
