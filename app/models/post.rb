@@ -3,6 +3,8 @@ belongs_to :user
 acts_as_votable
 acts_as_commentable
 
+has_many :endorsements
+
 mount_uploader :image, AvatarUploader
 
 def self.from_users_followed_by(user)

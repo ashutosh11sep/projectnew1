@@ -87,6 +87,12 @@
     <%= form.file_field :image, id: :post_title, class:"form-control",id: "email", placeholder: 'put image' %>
   </div>
 
+
+  <p class="form-group", class="emoji-picker-container">
+    <%= form.label :feeling %><br>
+    <%= form.text_area :feeling, id: :postPfeeling, class:'form-control',id: "email",placeholder: 'how you are feeling', data: { emojiable: true } %>
+  </p>
+
 <div class="actions">
 <%= form.submit("Submit", class: "btn btn-success" ) %>
   </div>
@@ -109,6 +115,12 @@
   <strong>Image:</strong>
   <%= image_tag post.image %>
 </p>
+
+<p>
+  <strong>Feeling:</strong>
+  <%= post.feeling %>
+</p>
+
 
 
 <% #if @post.votes_for.where(voter_id: current_user.id).first.vote_flag == true %>

@@ -15,6 +15,34 @@
   <%= image_tag @post.image %>
 </p>
 
+<p>
+  <strong>Feeling:</strong>
+  <%=@post.feeling %>
+</p>
+
+<% @post.endorsements.each do |endorsement| %>
+  <p>
+    <strong>Text:</strong>
+    <%= endorsement.text %>
+  </p>
+
+<% end %>
+
+<%= form_for([@post, @post.endorsements.build]) do |f| %>
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_field :text %>
+  </p>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+
+
+
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
 
@@ -24,19 +52,24 @@
   <%= comment.comment %>
 </p>
 
+
 <% end %>
- 
+
+
 
 <%= form_for([@post, @post.comments.build]) do |f| %>
   
   
+  
   <p class="emoji-picker-container">
+
     <%= f.label :comment %><br>
     <%= f.text_area :comment, class: 'form-control', data: { emojiable: true } %>
+
       <%#= "Post comment: #{content_with_emoji(@post.comments)}".html_safe %>
         
   </p>
-  <p>
+<p>
     <%= f.submit %>
   </p>
 <% end %>

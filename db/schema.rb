@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701061132) do
+ActiveRecord::Schema.define(version: 20170704084907) do
 
   create_table "comments", force: :cascade do |t|
     t.string "title", limit: 50, default: ""
@@ -27,6 +27,32 @@ ActiveRecord::Schema.define(version: 20170701061132) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id", "sender_id"], name: "index_conversations_on_recipient_id_and_sender_id", unique: true
+  end
+
+  create_table "endorsements", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "post_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id"
+    t.integer "conversation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "descrption"
@@ -34,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170701061132) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "image"
+    t.string "feeling"
   end
 
   create_table "users", force: :cascade do |t|

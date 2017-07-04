@@ -65,3 +65,7 @@ gem 'carrierwave', '~> 1.0'
 
 gem 'acts_as_commentable'
 gem 'rails_emoji_picker'
+
+gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'jquery-rails'

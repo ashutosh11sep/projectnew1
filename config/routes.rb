@@ -9,6 +9,17 @@ devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_call
 #resources :posts do
    #resources :votes
    #end
+resources :posts do
+    resources :endorsements
+
+end
+resources :conversations, only: [:create] do
+    member do
+      post :close
+    end
+
+    resources :messages, only: [:create]
+end
 
 resources :posts do
   resources :comments

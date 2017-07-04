@@ -1,1 +1,0 @@
-<%= content_with_emoji(@post.comment) %>

@@ -7,6 +7,10 @@ has_many :posts
 
 devise :omniauthable, :omniauth_providers => [:facebook]
 
+has_many :messages
+has_many :conversations, foreign_key: :sender_id
+
+has_many :endorsements
 
 
 def self.new_with_session(params, session)
