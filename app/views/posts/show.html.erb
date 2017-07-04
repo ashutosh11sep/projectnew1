@@ -17,13 +17,19 @@
 
 <p>
   <strong>Feeling:</strong>
-  <%=@post.feeling %>
+  <%#=@post.feeling %>
+  <%= content_with_emoji(@post.feeling) %>
 </p>
 
 <% @post.endorsements.each do |endorsement| %>
   <p>
     <strong>Text:</strong>
     <%= endorsement.text %>
+  </p>
+
+  <p>
+    <strong>User_id:</strong>
+    <%= endorsement.user.email %>
   </p>
 
 <% end %>
@@ -34,6 +40,11 @@
     <%= f.text_field :text %>
   </p>
   
+   <p>
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </p>
+
   <p>
     <%= f.submit %>
   </p>
