@@ -93,6 +93,13 @@
     <%= form.text_area :feeling, id: :postPfeeling, class:'form-control',id: "email",placeholder: 'how you are feeling', data: { emojiable: true } %>
   </p>
 
+
+    <p>
+     <%= form.label :user_list%><br>
+    <%= form.collection_select :user_id, User.all, :id, :email, prompt: true %>
+    </p>
+
+
 <div class="actions">
 <%= form.submit("Submit", class: "btn btn-success" ) %>
   </div>

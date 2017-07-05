@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-has_many :posts
+#has_many :posts
 
 devise :omniauthable, :omniauth_providers => [:facebook]
 
@@ -11,6 +11,12 @@ has_many :messages
 has_many :conversations, foreign_key: :sender_id
 
 has_many :endorsements
+
+
+has_many :taggings
+has_many :posts, through: :taggings
+
+
 
 
 def self.new_with_session(params, session)
