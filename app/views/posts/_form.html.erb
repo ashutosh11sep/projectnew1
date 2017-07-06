@@ -47,7 +47,7 @@
              <a href="">Career</a>
             <a href="">Portfolio</a>
             <a href="">Contact</a//-->
-
+            <%= link_to "Profile",  {:controller =>"users", :action =>"show", :id => current_user.id} %>
             <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
         </nav>
     </div>
@@ -94,12 +94,7 @@
   </p>
 
 
-    <p>
-     <%= form.label :user_list%><br>
-    <%= form.collection_select :user_id, User.all, :id, :email, prompt: true %>
-    </p>
-
-
+    
 <div class="actions">
 <%= form.submit("Submit", class: "btn btn-success" ) %>
   </div>

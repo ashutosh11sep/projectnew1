@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  #resources :users
   resources :posts
   #devise_for :users
   get 'home/index'
@@ -32,5 +32,10 @@ end
     put "like", to: "posts#upvote"
     put "dislike", to: "posts#downvote"
   end
+
+
 end
+get "/tagging" => "posts#tag"
+get "users/profile" => "users#show"
+
 end

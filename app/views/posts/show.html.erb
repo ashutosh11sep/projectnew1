@@ -21,12 +21,12 @@
   <%#= content_with_emoji(@post.feeling) %>
 </p>
 
+<% @users.each do |user| %>
 <p>
-  Tags:
-  <% @post.users.each do |user| %>
-    <%= link_to user.email, user_path(user) %>
+    <strong>Tag:</strong>
+    <%=link_to user.email, tagging_path+ "?userId=#{user.id}&&postID=#{@post.id}" %>
+  </p>
   <% end %>
-</p>
 
 
 

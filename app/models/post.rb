@@ -16,11 +16,7 @@ def self.from_users_followed_by(user)
           followed_user_ids: followed_user_ids, user_id: user)
   end
 
-  def user_list
-  self.users.collect do |user|
-    user.name
-  end.join(", ")
-end
+  
 end
 
 

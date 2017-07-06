@@ -13,6 +13,13 @@ class PostsController < ApplicationController
   def show
         @post = Post.find(params[:id])
          @comment = Comment.new
+
+         @users= User.all
+  end
+  def tag
+   # byebug
+    Tagging.create(user_id: params[:userId],post_id: params[:postID])
+   redirect_to 'posts/#{:postId}'
   end
 
   # GET /posts/new
