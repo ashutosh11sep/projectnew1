@@ -7,3 +7,35 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+
+
+
+
+
+
+
+<% @users.each do |user| %>
+<p>
+   <% if current_user_is_following(current_user.id, user.id) %>
+
+    <%=link_to 'unfollow',  user_follows_path(user.id),  method: :post %>
+    <%= user.name %>
+  
+   <% else %>
+   
+    
+    <%=link_to 'Follow',  user_follows_path(user.id),  method: :post %>
+    <%= user.name %>
+
+  </p>
+
+  
+
+     <%#= link_to 'Follow', {:controller =>"followers", :action =>"create", followerid: current_user.id, followingid: user.id} %>
+  
+     <% end %>
+
+<% end %>
+
+<%= link_to "Following", {controller: "follows", action: "following"} %>
+<%= link_to "Follower", {controller: "follows", action: "follower"} %>

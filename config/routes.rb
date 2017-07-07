@@ -33,9 +33,15 @@ end
     put "dislike", to: "posts#downvote"
   end
 
+  end
+resources :users do
+  resources :follows
 
 end
 get "/tagging" => "posts#tag"
-get "users/profile" => "users#show"
-
+get "user/profile" => "users#show"
+get "user/follow" => "users#follow"
+#get "user/unfollow" => "users#unfollow"
+get "user/following" => "follows#following"
+get "user/follower" => "follows#follower"
 end

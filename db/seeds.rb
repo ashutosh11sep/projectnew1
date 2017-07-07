@@ -7,10 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 password = 'pass123'
-1.upto(5) do |i|
+1.upto(10) do |i|
   User.create(
-    email: "user-#{i}@example.com",
-    password: password,
-    password_confirmation: password
+  	    name: "#{i}aaaa",
+
+    email: "#{i}@gmail.com",
+    password: 12345678,
+    password_confirmation: 12345678
   )
 end
