@@ -16,13 +16,16 @@
 
 <% @users.each do |user| %>
 <p>
-   <% if current_user_is_following(current_user.id, user.id) %>
+    <%#byebug %>
+
+   <% if Follow.where(follower_id: current_user.id, following_id:user.id).first.present? %>
+
 
     <%=link_to 'unfollow',  user_follows_path(user.id),  method: :post %>
     <%= user.name %>
   
    <% else %>
-   
+    
     
     <%=link_to 'Follow',  user_follows_path(user.id),  method: :post %>
     <%= user.name %>
