@@ -128,6 +128,7 @@
 
 
 
+
 <% #if @post.votes_for.where(voter_id: current_user.id).first.vote_flag == true %>
    <%#= link_to "Dislike", dislike_post_path(post), method: :put %>
    <%#= post.votes_for.size %> 
@@ -159,6 +160,9 @@
 <% end %>
  
 <%= link_to 'Back', posts_path %>
+
+
+
 <!-- <div class="container">
   
   
@@ -193,7 +197,35 @@
 </div>
 <% end %>
 
+
  -->
+
+
+  <h1>Basic Chat </h1>
+<div class="row">
+  <div class="col-md-6">
+    <ul id="conversations-list">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">User list</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @users.each do |user| %>
+  <li><%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <footer class="container-fluid text-center bg-lightgray">
 
         <div class="copyrights" style="margin-top:25px;">

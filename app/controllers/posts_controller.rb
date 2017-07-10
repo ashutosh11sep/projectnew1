@@ -15,6 +15,12 @@ class PostsController < ApplicationController
          @comment = Comment.new
 
          @users= User.all
+
+          session[:conversations] ||= []
+
+    @users = User.all.where.not(id: current_user)
+    @conversations = Conversation.includes(:recipient, :messages)
+                                 .find(session[:conversations])
   end
   def tag
    # byebug
@@ -27,6 +33,13 @@ class PostsController < ApplicationController
     #byebug
     @post = Post.new
     @current_user= current_user
+
+
+          session[:conversations] ||= []
+
+    @users = User.all.where.not(id: current_user)
+    @conversations = Conversation.includes(:recipient, :messages)
+                                 .find(session[:conversations])
   end
 
   # GET /posts/1/edit
@@ -99,7 +112,7 @@ end
       @post.liked_by current_user
       @post.votes_for.size 
      #@post.votes_for.up.by_type current_user
-      redirect_to new_post_path
+      redirect_to posts_path
   end
 
   def downvote
@@ -108,7 +121,7 @@ end
       @post.downvote_from current_user
       @post.votes_for.size 
      #@post.votes_for.down.by_type current_user
-      redirect_to @post
+      redirect_to posts_path
   end
 
   private

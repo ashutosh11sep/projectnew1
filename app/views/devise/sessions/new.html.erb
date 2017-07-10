@@ -30,3 +30,47 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body style="padding-top:150px;">
+    <div class="container">
+      <center>
+        <div class="container">
+          <h2>COLAB</h2>
+          <div class="btn-group-vertical">
+            <button style="padding:5px 60px;" type="button" class="btn btn-info face">Facebook</button>
+            <br/>
+            <button type="button" class="btn btn-danger goog">Google</button>
+          </div>
+          <h3>OR</h3>
+          <form>
+            <div class="form-group">
+              <input type="email" class="eml" placeholder="Email" id="email" />
+              <br/><br/>
+              <input type="Password" class="eml" placeholder="Password" id="pass" />
+              <br/>
+              <small>Need to Coleb?<a href="">Sign Up</a></small>
+            </div>
+            <br/>
+            <button type="submit" style="padding:5px 70px;" >Login</button>
+          </form>
+        </div>
+    </div>
+    </center>
+  </body>
+</html>
