@@ -25,19 +25,7 @@
                <a <%= link_to 'New Post', new_post_path %>
                </a>&nbsp;&nbsp;&nbsp;&nbsp;
                
-              <%#= form_for 'tagging_path+ "?userId=#{user.id}&&postID=#{@post.id}"' do |f| %>
-
-            <select class="js-example-basic-multiple" name="xyz" multiple="multiple">
-              <% @users.each do |user| %>
-              <p>
-               <strong>Tag:</strong>
-                 <option value= "<%user.id%>"><%=user.name%></option>
-              </p>
-              </select>
-              <div class ="actions" >
-              <%# form.submit %>
-              </div>
-             <% end %>
+              
              <%# end %>
  <!--        
           

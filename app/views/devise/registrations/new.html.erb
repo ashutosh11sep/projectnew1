@@ -19,6 +19,17 @@
   </div>
 
   <div class="field">
+    <%= f.label :about %><br />
+    <%= f.text_field :about, autofocus: true %>
+  </div>
+ 
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image, autofocus: true %>
+  </div>
+   
+
+  <div class="field">
     <%= f.label :birth_date %><br />
     <%= f.date_select :birth_date, autofocus: true %>
   </div>
