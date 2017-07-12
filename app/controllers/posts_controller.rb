@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def index
     #byebug
     @posts = Post.all
+    @users = User.all
   end
 
   # GET /posts/1
@@ -24,6 +25,7 @@ class PostsController < ApplicationController
   end
   def tag
    # byebug
+
     Tagging.create(user_id: params[:userId],post_id: params[:postID])
    redirect_to 'posts/#{:postId}'
   end
@@ -50,14 +52,20 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create 
-   #byebug
-    
+   
+    #byebug
     @post = Post.new(post_params)
     @post.user_id=current_user.id
+    
     #respond_to do |format|
-    @post.save
-  
-        UserMailer.welcome_email(current_user).deliver_now
+       
+      params[:xyz].each do |userid|
+     @pst_id=Post.last.id
+     Tagging.create(user_id: userid,post_id: @pst_id)
+     @post.save
+     end
+     
+        #UserMailer.welcome_email(current_user).deliver_now
 
     redirect_to new_post_path
        # format.html { redirect_to @post, notice: 'Post was successfully created.' }

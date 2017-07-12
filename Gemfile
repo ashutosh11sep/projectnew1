@@ -69,3 +69,5 @@ gem 'rails_emoji_picker'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'jquery-rails'
+
+gem "select2-rails"

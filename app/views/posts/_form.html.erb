@@ -92,7 +92,20 @@
     <%= form.label :feeling %><br>
     <%= form.text_area :feeling, id: :postPfeeling, class:'form-control',id: "email",placeholder: 'how you are feeling', data: { emojiable: true } %>
   </p>
+    
 
+        
+       <select id="e1", name="xyz[]" class="js-example-basic-multiple">
+       <% @users.each do |user| %>
+         <%#= form.collection_select :user_id, User.order(:name),:id,:name%>
+
+    <p>
+        <option value= "<%=user.id%>"><%=user.name%></option>
+    </p>
+        <% end %>
+        </select>
+        <div class ="actions" >
+              <% form.submit %>
 
     
 <div class="actions">
@@ -125,7 +138,7 @@
 </p>
 
 
-
+             
 
 
 
@@ -578,8 +591,13 @@
 
 
 
+<script type="text/javascript">
+   
 
-
+    $( ".js-example-basic-multiple" ).select2({
+    theme: "bootstrap" ,multiple: true
+});
+</script>
 
 
 

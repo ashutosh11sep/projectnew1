@@ -1,110 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>index-page</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="container bgbox2">
-        <div class="col-md-9 ">
-         <h1>Posts</h1>
-        </div>
-      </div>
-    </div>
-    <br/>
-     <a href=""><img src="images/Generic-profile-image.png" class="img" alt="Cinque Terre" width="60" hight="60"></a><a href="">User Name</a>
-    
-    
-    <div class="container">
-    
-     <% @posts.each do |post| %>
 
+      <div class="container">
+         <div class="container bgbox2">
+            <div class="col-md-9 ">
+               <h1>Posts</h1>
+            </div>
+         </div>
+      </div>
+      <br/>
+      <a href=""><img src="images/Generic-profile-image.png" class="img" alt="Cinque Terre" width="60" hight="60"></a><a href="">User Name</a>
+      <div class="container">
+         <% @posts.each do |post| %>
+         <div class="col-md-12">
+            <div class="well well-sm ">
+               <%= post.title %>
+               <br/>
+            </div>
+            <div class="well well-sm ">
+               <a <%= link_to 'Show', post %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+               <a <%= link_to 'Edit', edit_post_path(post) %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+               <a <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+               <a <%= link_to 'New Post', new_post_path %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+               
+              <%#= form_for 'tagging_path+ "?userId=#{user.id}&&postID=#{@post.id}"' do |f| %>
+
+            <select class="js-example-basic-multiple" name="xyz" multiple="multiple">
+              <% @users.each do |user| %>
+              <p>
+               <strong>Tag:</strong>
+                 <option value= "<%user.id%>"><%=user.name%></option>
+              </p>
+              </select>
+              <div class ="actions" >
+              <%# form.submit %>
+              </div>
+             <% end %>
+             <%# end %>
+ <!--        
           
-          <div class="col-md-12">
-          <div class="well well-sm ">
-            <%= post.title %>
-           <br/>
-      </div>
-      
-      
-      <div class="well well-sm ">
-        <a <%= link_to 'Show', post %>
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a <%= link_to 'Edit', edit_post_path(post) %>
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a <%= link_to 'New Post', new_post_path %>
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-       
+
+              <p>
+               <%#= f.label :text %><br>
+               <%#= f.text_field :text %>
+              </p>
+  
+              <p>
+              <%#= f.label :user_id %><br>
+              <%#= f.text_field :user_id %>
+             </p>
+
+                
+              <%# end %> -->
+
+
+            <button onclick="endorses_click('<%=post.id%>');">        Endorse</button> 
+               &nbsp;&nbsp;&nbsp;&nbsp;
+               <% if post.votes_for.where(voter_id: current_user.id).first.present? %>
+               <a <%= link_to "Dislike", dislike_post_path(post), method: :put %>
+               <% else%>
+               <a <%= link_to "like", like_post_path(post), method: :put %>
+                <% end %>
+            </div>
+         </div>
+
+
          
-           <%# byebug %>
            
-        <% if post.votes_for.where(voter_id: current_user.id).first.present? %>
-        <a <%= link_to "Dislike", like_post_path(post), method: :put %>
-        <% else%>
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a <%= link_to "like", like_post_path(post), method: :put %>
-     </div>   
-    </div>
-    </div>
-    </div>
-  <%# end %>
-  <% end %>
-  <% end %>
-  </body>
-</html>
+
+          <% post.endorsements.each do |endorsement| %>
+         <p>
+           <strong>Text:</strong>
+            <%= endorsement.text %>
+           </p>
+
+          <p>
+           <strong>User_id:</strong>
+            <%= endorsement.user.email %>
+          </p>
 
 
 
+        <% end %>
+            <div class="endorse_form_<%=post.id %>" style='display: none;'>
+           <%= form_for([post, post.endorsements.build]) do |f| %>
+         <p>
+           <%= f.label :text %><br>
+           <%= f.text_field :text %>
+         </p>
+  
+          <p>
+           <%= f.label :user_id %><br>
+           <%= f.text_field :user_id %>
+          </p>
 
+          <p>
+         <%= f.submit %>
+          </p>
+       <% end %>
+       </div>
+        <% end %>
+      
+      </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
+      
+      <%# end %>
+    
 
 <!-- <p id="notice"><%= notice %></p>
+   <h1>Posts</h1>
+   
+   <table>
+     <thead>
+       <tr>
+         <th>Title</th>
+         <th>Descrption</th>
+         <th colspan="3"></th>
+       </tr>
+     </thead>
+   
+     <tbody>
+       <#% @posts.each do |post| %>
+         <tr>
+           <td><%#= post.title %></td>
+           <td><%#= post.descrption %></td>
+           <td><#%= link_to 'Show', post %></td>
+           <td><#%= link_to 'Edit', edit_post_path(post) %></td>
+           <td><#%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         </tr>
+       <%# end %>
+     </tbody>
+   </table>
+   
+   <br>
+   
+   <%#= link_to 'New Post', new_post_path %> -->
+  <script>
+    
+    function endorses_click(argument) {
+      $(".endorse_form_"+ argument).toggle();
+    }
+  </script>
 
-<h1>Posts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Descrption</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <#% @posts.each do |post| %>
-      <tr>
-        <td><%#= post.title %></td>
-        <td><%#= post.descrption %></td>
-        <td><#%= link_to 'Show', post %></td>
-        <td><#%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><#%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <%# end %>
-  </tbody>
-</table>
-
-<br>
-
-<%#= link_to 'New Post', new_post_path %> -->
+ 
