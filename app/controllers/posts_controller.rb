@@ -7,6 +7,11 @@ class PostsController < ApplicationController
     #byebug
     @posts = Post.all
     @users = User.all
+
+
+    @users = User.all.where.not(id: current_user)
+    @conversations = Conversation.includes(:recipient, :messages)
+                                 .find(session[:conversations])
   end
 
   # GET /posts/1
@@ -47,6 +52,12 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+        @current_user= current_user
+        @users= User.all
+
+        @users = User.all.where.not(id: current_user)
+    @conversations = Conversation.includes(:recipient, :messages)
+                                 .find(session[:conversations])
   end
 
   # POST /posts
@@ -118,7 +129,7 @@ end
     #byebug
       @post = Post.find(params[:id])
       @post.liked_by current_user
-      @post.votes_for.size 
+      @post.get_upvotes.size  
      #@post.votes_for.up.by_type current_user
       redirect_to posts_path
   end
@@ -127,7 +138,7 @@ end
   #byebug
       @post = Post.find(params[:id])
       @post.downvote_from current_user
-      @post.votes_for.size 
+      @post.get_downvotes.size 
      #@post.votes_for.down.by_type current_user
       redirect_to posts_path
   end

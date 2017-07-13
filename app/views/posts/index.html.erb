@@ -7,9 +7,10 @@
          </div>
       </div>
       <br/>
+
+      <% @posts.each do |post| %>
       <a href=""><img src="images/Generic-profile-image.png" class="img" alt="Cinque Terre" width="60" hight="60"></a><a href="">User Name</a>
       <div class="container">
-         <% @posts.each do |post| %>
          <div class="col-md-12">
             <div class="well well-sm ">
                <%= post.title %>
@@ -43,21 +44,30 @@
                 
               <%# end %> -->
 
+             <button onclick="chats_click('<%=post.id%>');">        Chat</button> 
 
+             &nbsp;&nbsp;&nbsp;&nbsp;
             <button onclick="endorses_click('<%=post.id%>');">        Endorse</button> 
                &nbsp;&nbsp;&nbsp;&nbsp;
-               <% if post.votes_for.where(voter_id: current_user.id).first.present? %>
+               <%# if post.votes_for.where(voter_id: current_user.id).first.present? %>
                <a <%= link_to "Dislike", dislike_post_path(post), method: :put %>
-               <% else%>
+              <%= post.get_downvotes.size  %> 
+
+               <%# else%>
                <a <%= link_to "like", like_post_path(post), method: :put %>
-                <% end %>
+              <%= post.get_upvotes.size  %> 
+
+                <%# end %>
             </div>
          </div>
 
+           <div class="chat_form_<%=post.id %>" style='display: none;'>
+             <%= render 'chat' %>
+             </div>
 
-         
+
            
-
+         
           <% post.endorsements.each do |endorsement| %>
          <p>
            <strong>Text:</strong>
@@ -92,6 +102,8 @@
         <% end %>
       
       </div>
+     
+     <%#= render 'chat' %>
 
    
       
@@ -130,6 +142,13 @@
     
     function endorses_click(argument) {
       $(".endorse_form_"+ argument).toggle();
+    }
+  </script>
+
+  <script>
+    
+    function chats_click(argument) {
+      $(".chat_form_"+ argument).toggle();
     }
   </script>
 
