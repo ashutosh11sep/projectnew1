@@ -27,38 +27,45 @@
                </a>&nbsp;&nbsp;&nbsp;&nbsp;
                
               
-             <%# end %>
- <!--        
-          
-
-              <p>
-               <%#= f.label :text %><br>
-               <%#= f.text_field :text %>
-              </p>
-  
-              <p>
-              <%#= f.label :user_id %><br>
-              <%#= f.text_field :user_id %>
-             </p>
-
-                
-              <%# end %> -->
-
              <button onclick="chats_click('<%=post.id%>');">        Chat</button> 
 
              &nbsp;&nbsp;&nbsp;&nbsp;
             <button onclick="endorses_click('<%=post.id%>');">        Endorse</button> 
                &nbsp;&nbsp;&nbsp;&nbsp;
                <%# if post.votes_for.where(voter_id: current_user.id).first.present? %>
-               <a <%= link_to "Dislike", dislike_post_path(post), method: :put %>
-              <%= post.get_downvotes.size  %> 
+                   
+                <%= link_to "Dislike", dislike_post_path(post),class: 'vote', method: :put, remote: true %>
+                <%= post.get_downvotes.size  %>
+                
+
+            <!-- <button class="btn btn-primary"> 
+          <span><p><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></p></span>
+        </button> -->
+
+                   <!-- <span class="votes-count" data-id="<%= post.id %>">
+               
+              </span> --> 
+                 
+
 
                <%# else%>
-               <a <%= link_to "like", like_post_path(post), method: :put %>
-              <%= post.get_upvotes.size  %> 
+              <%= link_to "like", like_post_path(post), method: :put,class: 'vote', remote: true %>
+               <%= post.get_upvotes.size  %>
 
+
+                 <!-- <button class="btn btn-primary"> 
+          <span><p><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></p></span>
+        </button> -->
+               <!-- <span class="votes-count" data-id="<%= post.id %>">
+                
+                              
+
+              </span>  -->
+              
+  
                 <%# end %>
             </div>
+         </div>
          </div>
 
            <div class="chat_form_<%=post.id %>" style='display: none;'>

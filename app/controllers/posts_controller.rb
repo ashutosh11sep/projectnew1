@@ -128,11 +128,18 @@ end
   def upvote
     #byebug
       @post = Post.find(params[:id])
-      @post.liked_by current_user
+      @post.upvote_from current_user
       @post.get_upvotes.size  
      #@post.votes_for.up.by_type current_user
-      redirect_to posts_path
+      
+ # if request.xhr?
+ #       render json: { count: @post.get_upvotes.size, id: params[:id] }
+ #   else
+    redirect_to posts_path
   end
+      #end
+
+  
 
   def downvote
   #byebug
@@ -140,8 +147,15 @@ end
       @post.downvote_from current_user
       @post.get_downvotes.size 
      #@post.votes_for.down.by_type current_user
-      redirect_to posts_path
+      
+   #   if request.xhr?
+   #     render json: { count: @post.get_downvotes.size, id: params[:id] }
+
+   # else
+    redirect_to posts_path
   end
+  
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
