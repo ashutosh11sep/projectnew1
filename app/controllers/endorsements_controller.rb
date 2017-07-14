@@ -5,7 +5,7 @@ def create
     @endorsement = @post.endorsements.create(endorsement_params)
     @endorsement.user_id =current_user.id
     @endorsement.save
-    redirect_to posts_path
+    redirect_to new_post_path
   end
  
   private

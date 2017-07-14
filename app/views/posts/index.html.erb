@@ -35,32 +35,32 @@
                <%# if post.votes_for.where(voter_id: current_user.id).first.present? %>
                    
                 <%= link_to "Dislike", dislike_post_path(post),class: 'vote', method: :put, remote: true %>
-                <%= post.get_downvotes.size  %>
+                
                 
 
             <!-- <button class="btn btn-primary"> 
           <span><p><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></p></span>
         </button> -->
 
-                   <!-- <span class="votes-count" data-id="<%= post.id %>">
-               
-              </span> --> 
+                  <span class="votes-count" data-id="<%= post.id %>">
+               <%= post.get_downvotes.size  %>
+              </span> 
                  
 
 
                <%# else%>
               <%= link_to "like", like_post_path(post), method: :put,class: 'vote', remote: true %>
-               <%= post.get_upvotes.size  %>
+               
 
 
                  <!-- <button class="btn btn-primary"> 
           <span><p><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></p></span>
         </button> -->
-               <!-- <span class="votes-count" data-id="<%= post.id %>">
-                
+                <span class="votes-count" data-id="<%= post.id %>">
+                <%= post.get_upvotes.size  %>
                               
 
-              </span>  -->
+              </span>  
               
   
                 <%# end %>

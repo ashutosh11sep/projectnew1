@@ -1,70 +1,113 @@
-<h2>Sign up</h2>
 
+<body style="padding-top:130px;">
+      <div class="container">
+         <center>
+            <div class="container">
+    <h3>Sign up For</h3>
+     <h2>COLAB</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <%= devise_error_messages! %> </br>
+
+<div class="btn-group-vertical" >
+ <button style="padding:5px 60px;" type="button" class="btn btn-info face">
+  <%= link_to "Facebook", user_facebook_omniauth_authorize_path %></button>
+  
+  <h3>OR</h3>
 
 <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
+    <%#= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true,placeholder: "Full Name", id: "fullname"  %>
   </div>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name, autofocus: true %>
-  </div>
+  </div> -->
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%#= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, placeholder: "Email", id: "email" %>
   </div>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :about %><br />
     <%= f.text_field :about, autofocus: true %>
-  </div>
+  </div> -->
  
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :image %><br />
     <%= f.file_field :image, autofocus: true %>
-  </div>
+  </div> -->
    
 
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :birth_date %><br />
     <%= f.date_select :birth_date, autofocus: true %>
-  </div>
+  </div> -->
 
-  <div class="field">    
+  <!-- <div class="field">    
    <%= f.label :gender %></br>
    <span class="option">Male<span><%= f.radio_button :gender, "m" %>
    <span class="option">Female<span><%= f.radio_button :gender, "f" %></br>
-</div>
+</div> -->
 
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%#= f.label :password %>
+    <%# if @minimum_password_length %>
+    <!-- <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <%# end %><br /> -->
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Password", id: "pass" %>
   </div>
+  <small>Already Have Account?<%= link_to "Log in", new_session_path(resource_name) %><br /></small></br>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+  </div> -->
 
-  <div class="actions">
-    <%= f.submit "Sign up" %></br>
+<div class="actions", class="btn-group-vertical">
+    <button style="padding:5px 60px;" type="button" >
+    <%= f.submit "Sign up" %></button>
   </div>
 <% end %>
+</div>
+      </div>
+      </center>
 
-<%= render "devise/shared/links" %>
+
+<%#= render "devise/shared/links" %>
 
 
 
 
-<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
    <head>
       <title>Sign Up</title>
@@ -104,4 +147,4 @@
       </div>
       </center>
    </body>
-</html>
+</html> -->

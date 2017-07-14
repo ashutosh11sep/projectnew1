@@ -54,6 +54,94 @@
 </header><!-- /header -->
 
 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>stream-page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container bgbox2">
+        <div class="col-md-9 ">
+          <p>COLAB</p>
+        </div>
+        <div class="col-md-3">
+          <a href=""><img src="/images/message.png" class="img" alt="Cinque Terre" ></a>
+          <a href=""><img src="/images/well.png" class="img" alt="Cinque Terre" ></a>
+          <a href=""><img src="/images/profile.png" class="img" alt="Cinque Terre" ></a> 
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="container">
+      <div class="col-md-4">
+        <a href=""><img src="/images/Generic-profile-image.png" class="img-circle" alt="Cinque Terre" ></a>
+      </div>
+     <div class="col-md-8">
+        <div class="well well-sm  ">
+          <a href=""><img src="/images/profile_img.png" class="img-responsive posi" width="1000" alt="Cinque Terre" ></a>
+          <a href=""><img src="/images/attch.png" class="img-responsive posi1" alt="Cinque Terre" ></a>
+        </div>
+        <br/>
+
+
+        <%= form_with(model: post, local: true) do |form| %>
+    <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+ <div  class="form-group">
+    <label for="email">
+    <%= form.label :title %></label>
+    <%= form.text_field :title, id: :post_title, class:"form-control",id: "email", placeholder: 'put title' %>
+  </div> 
+
+     <div  class="form-group">
+  <label for="email">
+    <%= form.label :image %></label>
+    <%= form.file_field :image, id: :post_title, class:"form-control",id: "email", placeholder: 'put image' %>
+  </div> 
+
+
+
+      
+      <%= form.submit("Submit", class: "btn btn-success" ) %>
+
+   </div>
+    </div>
+    <% end %>
+    <hr/>
+    <div class="container">
+    <div class="col-md-4"></div>
+    
+    <div>
+  
+
+
+
+
+
+
+
+
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
@@ -68,38 +156,38 @@
   <% end %>
 
 
-  <div  class="form-group">
+   <!-- <div  class="form-group">
   <label for="email">
-    <%= form.label :title %></label>
-    <%= form.text_field :title, id: :post_title, class:"form-control",id: "email", placeholder: 'put title' %>
-  </div>
+    <%#= form.label :title %></label>
+    <%#= form.text_field :title, id: :post_title, class:"form-control",id: "email", placeholder: 'put title' %>
+  </div>  -->
 
-  <div class="form-group">
+   <!-- <div class="form-group">
   <label for="pwd">
-    <%= form.label :descrption %></label>
-    <%= form.text_field :descrption, id: :post_descrption,class:"form-control",id: "pwd", placeholder: 'put descrption' %> 
-  </div>
+    <%#= form.label :descrption %></label>
+    <%#= form.text_field :descrption, id: :post_descrption,class:"form-control",id: "pwd", placeholder: 'put descrption' %> 
+  </div>  -->
 
-
-  <div  class="form-group">
+  <!--  <div  class="form-group">
   <label for="email">
-    <%= form.label :image %></label>
-    <%= form.file_field :image, id: :post_title, class:"form-control",id: "email", placeholder: 'put image' %>
-  </div>
+    <%#= form.label :image %></label>
+    <%#= form.file_field :image, id: :post_title, class:"form-control",id: "email", placeholder: 'put image' %>
+  </div>  -->
 
 
-  <p class="form-group", class="emoji-picker-container">
-    <%= form.label :feeling %><br>
-    <%= form.text_area :feeling, id: :postPfeeling, class:'form-control',id: "email",placeholder: 'how you are feeling', data: { emojiable: true } %>
-  </p>
+  <!-- <p class="form-group", class="emoji-picker-container">
+    <%#= form.label :feeling %><br>
+    <%#= form.text_area :feeling, id: :postPfeeling, class:'form-control',id: "email",placeholder: 'how you are feeling', data: { emojiable: true } %>
+  </p> -->
     
-
+    
         
-       <select id="e1", name="xyz[]" class="js-example-basic-multiple">
+    <select id="e1", name="xyz[]" class="js-example-basic-multiple">
        <% @users.each do |user| %>
+        <%# byebug %>
          <%#= form.collection_select :user_id, User.order(:name),:id,:name%>
 
-    <p>
+    <p>  
         <option value= "<%=user.id%>"><%=user.name%></option>
     </p>
         <% end %>
@@ -109,8 +197,8 @@
 
     
 <div class="actions">
-<%= form.submit("Submit", class: "btn btn-success" ) %>
-  </div>
+<%#= form.submit("Submit", class: "btn btn-success" ) %>
+  </div> 
 
 
 
@@ -208,7 +296,7 @@
 </tbody>
  </table>
 </div>
-<% end %>
+<%# end %>
 
 
  -->
@@ -218,8 +306,8 @@
 <div class="row">
   <div class="col-md-6">
     <ul id="conversations-list">
-      <% @conversations.each do |conversation| %>
-        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <%# @conversations.each do |conversation| %>
+        <%#= render 'conversations/conversation', conversation: conversation, user: current_user %>
       <% end %>
     </ul>
   </div>
@@ -231,14 +319,148 @@
       </div>
       <div class="panel-body">
         <ul>
-          <% @users.each do |user| %>
-  <li><%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %></li>
-          <% end %>
+          <%# @users.each do |user| %>
+  <li><%#= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %></li>
+          <%# end %>
         </ul>
       </div>
     </div>
   </div>
 </div> -->
+
+
+
+
+
+
+
+
+<div class="container">
+         <div class="container bgbox2">
+            <div class="col-md-9 ">
+               <h1>Posts</h1>
+            </div>
+         </div>
+      </div>
+      <br/>
+
+      <% @posts.each do |post| %>
+      <a href=""><img src="/images/Generic-profile-image.png" class="img" alt="Cinque Terre" width="60" hight="60"></a><a href="">User Name</a>
+      <div class="container">
+         <div class="col-md-12">
+            <div class="well well-sm ">
+               <%= post.title %>
+               <br/>
+            </div>
+            <div class="well well-sm ">
+               <a <%= link_to 'Show', post %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+               <a <%= link_to 'Edit', edit_post_path(post) %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+               <a <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+               <a <%= link_to 'New Post', new_post_path %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+               
+              
+             <button onclick="chats_click('<%=post.id%>');">        Chat</button> 
+
+             &nbsp;&nbsp;&nbsp;&nbsp;
+            <button onclick="endorses_click('<%=post.id%>');">        Endorse</button> 
+               &nbsp;&nbsp;&nbsp;&nbsp;
+               <%# if post.votes_for.where(voter_id: current_user.id).first.present? %>
+                   
+                <%= link_to "Dislike", dislike_post_path(post),class: 'vote', method: :put, remote: true %>
+                <%= post.get_downvotes.size  %>
+                
+
+            <!-- <button class="btn btn-primary"> 
+          <span><p><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></p></span>
+        </button> -->
+
+                  <!-- <span class="votes-count" data-id="<%= post.id %>">
+               
+              </span> 
+                  -->
+
+
+               <%# else%>
+              <%= link_to "like", like_post_path(post), method: :put,class: 'vote', remote: true %>
+               <%= post.get_upvotes.size  %>
+               
+
+
+                 <!-- <button class="btn btn-primary"> 
+          <span><p><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></p></span>
+        </button> -->
+                <!-- <span class="votes-count" data-id="<%= post.id %>">
+                
+                              
+
+              </span>  --> 
+              
+  
+                <%# end %>
+            </div>
+         </div>
+         </div>
+
+           <div class="chat_form_<%=post.id %>" style='display: none;'>
+             <%= render 'chat' %>
+             </div>
+
+
+           
+         
+          <% post.endorsements.each do |endorsement| %>
+         <p>
+           <strong>Text:</strong>
+            <%= endorsement.text %>
+           </p>
+
+          <p>
+           <strong>User_id:</strong>
+            <%= endorsement.user.email %>
+          </p>
+
+
+
+        <% end %>
+            <div class="endorse_form_<%=post.id %>" style='display: none;'>
+           <%= form_for([post, post.endorsements.build]) do |f| %>
+         <p>
+           <%= f.label :text %><br>
+           <%= f.text_field :text %>
+         </p>
+  
+          <p>
+           <%= f.label :user_id %><br>
+           <%= f.text_field :user_id %>
+          </p>
+
+          <p>
+         <%= f.submit %>
+          </p>
+       <% end %>
+       </div>
+        <% end %>
+      
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <footer class="container-fluid text-center bg-lightgray">
 
         <div class="copyrights" style="margin-top:25px;">

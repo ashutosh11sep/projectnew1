@@ -38,19 +38,25 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     #byebug
+    @users = User.all
+    @posts = Post.all
     @post = Post.new
     @current_user= current_user
 
+    
 
           session[:conversations] ||= []
 
     @users = User.all.where.not(id: current_user)
-    @conversations = Conversation.includes(:recipient, :messages)
-                                 .find(session[:conversations])
+    @conversations = Conversation.includes(:recipient, :messages).find(session[:conversations])
+  
+   
   end
 
   # GET /posts/1/edit
   def edit
+
+    @posts = Post.all
     @post = Post.find(params[:id])
         @current_user= current_user
         @users= User.all
@@ -63,18 +69,19 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create 
-   
+
     #byebug
+    @users = User.all
     @post = Post.new(post_params)
     @post.user_id=current_user.id
     
     #respond_to do |format|
        
-      params[:xyz].each do |userid|
+    params[:xyz].each do |userid|
      @pst_id=Post.last.id
      Tagging.create(user_id: userid,post_id: @pst_id)
      @post.save
-     end
+     
      
         #UserMailer.welcome_email(current_user).deliver_now
 
@@ -85,7 +92,7 @@ class PostsController < ApplicationController
         #format.html { render :new }
         #format.json { render json: @post.errors, status: :unprocessable_entity }
       #end
-    #end
+    end
   end
 
   # PATCH/PUT /posts/1
@@ -119,7 +126,7 @@ end
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to new_post_path, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -133,8 +140,8 @@ end
      #@post.votes_for.up.by_type current_user
       
  # if request.xhr?
- #       render json: { count: @post.get_upvotes.size, id: params[:id] }
- #   else
+ #        render json: { count: @post.get_upvotes.size, id: params[:id] }
+ #    else
     redirect_to posts_path
   end
       #end
@@ -148,10 +155,10 @@ end
       @post.get_downvotes.size 
      #@post.votes_for.down.by_type current_user
       
-   #   if request.xhr?
-   #     render json: { count: @post.get_downvotes.size, id: params[:id] }
+    #  if request.xhr?
+    #     render json: { count: @post.get_downvotes.size, id: params[:id] }
 
-   # else
+    # else
     redirect_to posts_path
   end
   
