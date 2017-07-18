@@ -43,8 +43,7 @@ class PostsController < ApplicationController
     @post = Post.new
     @current_user= current_user
 
-    
-
+     
           session[:conversations] ||= []
 
     @users = User.all.where.not(id: current_user)
@@ -71,16 +70,16 @@ class PostsController < ApplicationController
   def create 
 
     #byebug
-    @users = User.all
+    
     @post = Post.new(post_params)
     @post.user_id=current_user.id
     
     #respond_to do |format|
        
     params[:xyz].each do |userid|
-     @pst_id=Post.last.id
-     Tagging.create(user_id: userid,post_id: @pst_id)
-     @post.save
+      @pst_id=Post.last.id
+      Tagging.create(user_id: userid,post_id: @pst_id)
+      @post.save
      
      
         #UserMailer.welcome_email(current_user).deliver_now
@@ -142,7 +141,7 @@ end
  # if request.xhr?
  #        render json: { count: @post.get_upvotes.size, id: params[:id] }
  #    else
-    redirect_to posts_path
+    redirect_to new_post_path
   end
       #end
 
@@ -159,7 +158,7 @@ end
     #     render json: { count: @post.get_downvotes.size, id: params[:id] }
 
     # else
-    redirect_to posts_path
+    redirect_to new_post_path
   end
   
   #end

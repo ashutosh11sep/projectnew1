@@ -1,5 +1,6 @@
 class EndorsementsController < ApplicationController
 def create
+  #byebug
 	
     @post = Post.find(params[:post_id])
     @endorsement = @post.endorsements.create(endorsement_params)

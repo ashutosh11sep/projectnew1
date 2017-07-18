@@ -23,8 +23,8 @@
                </a>&nbsp;&nbsp;&nbsp;&nbsp;
                <a <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
                </a>&nbsp;&nbsp;&nbsp;&nbsp;
-               <a <%= link_to 'New Post', new_post_path %>
-               </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a <%= link_to 'New Post', new_post_path %>
+               </a>&nbsp;&nbsp;&nbsp;&nbsp; 
                
               
              <button onclick="chats_click('<%=post.id%>');">        Chat</button> 
@@ -89,6 +89,7 @@
 
 
         <% end %>
+            <%# byebug %>
             <div class="endorse_form_<%=post.id %>" style='display: none;'>
            <%= form_for([post, post.endorsements.build]) do |f| %>
          <p>
