@@ -11,13 +11,9 @@
 // about supported directives.
 //
 
-
 //= require jquery
 //= require jquery_ujs
 
+//= require select2
 
-
-//= require turbolinks
-//= require rails_emoji_picker
-//= require select2-full
 //= require_tree .

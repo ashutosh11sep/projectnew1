@@ -3,7 +3,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
 $(document).on 'ajax:success', 'a.vote', (status,data,xhr)->
   # update counter
   $(".votes-count[data-id=#{data.id}]").text data.count

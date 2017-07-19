@@ -69,29 +69,30 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create 
 
-    #byebug
+   # byebug
     
     @post = Post.new(post_params)
     @post.user_id=current_user.id
     
     #respond_to do |format|
        
+     
     params[:xyz].each do |userid|
-      @pst_id=Post.last.id
-      Tagging.create(user_id: userid,post_id: @pst_id)
-      @post.save
-     
-     
+    @pst_id=Post.last.id
+    Tagging.create(user_id: userid,post_id: @pst_id)
+     @post.save
         #UserMailer.welcome_email(current_user).deliver_now
-
-    redirect_to new_post_path
+    
+ 
        # format.html { redirect_to @post, notice: 'Post was successfully created.' }
         #format.json { render :show, status: :created, location: @post }
       #else
         #format.html { render :new }
         #format.json { render json: @post.errors, status: :unprocessable_entity }
-      #end
+      # end
     end
+        redirect_to new_post_path
+
   end
 
   # PATCH/PUT /posts/1
@@ -135,15 +136,18 @@ end
     #byebug
       @post = Post.find(params[:id])
       @post.upvote_from current_user
-      @post.get_upvotes.size  
+      #@post.get_upvotes.size  
      #@post.votes_for.up.by_type current_user
-      
- # if request.xhr?
- #        render json: { count: @post.get_upvotes.size, id: params[:id] }
- #    else
-    redirect_to new_post_path
-  end
-      #end
+     respond_to do |format|
+    format.js { render :file => 'posts/post.js.erb'}
+     end    
+  
+  # if request.xhr?
+  #         render json: { count: @post.get_upvotes.size, id: params[:id] }
+  #     else
+  #    redirect_to new_post_path
+  #  end
+      end
 
   
 
@@ -151,17 +155,20 @@ end
   #byebug
       @post = Post.find(params[:id])
       @post.downvote_from current_user
-      @post.get_downvotes.size 
+      #@post.get_downvotes.size 
      #@post.votes_for.down.by_type current_user
       
-    #  if request.xhr?
-    #     render json: { count: @post.get_downvotes.size, id: params[:id] }
+      respond_to do |format|
+    format.js { render :file => 'posts/post.js.erb'}
+     end
+   #   if request.xhr?
+   #        render json: { count: @post.get_downvotes.size, id: params[:id] }
 
-    # else
-    redirect_to new_post_path
-  end
+   #    else
+   #   redirect_to new_post_path
+   # end
   
-  #end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
