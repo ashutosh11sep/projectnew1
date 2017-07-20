@@ -23,27 +23,43 @@
 <a href=""><img src="/images/message.png" class="img" alt="Cinque Terre" ></a>
 <a href=""><img src="/images/well.png" class="img" alt="Cinque Terre" ></a>
 <a href=""><img src="/images/profile.png" class="img" alt="Cinque Terre" ></a> 
+<%= link_to "EditProfile", edit_user_registration_path  %>
+
 </div>
 </div>
+
+
 <center>
 <a href=""><img src="/images/Generic-profile-image.png" class="img-circle" alt="Cinque Terre" ></a>
  </center>
  </div>
  <div class="continer my-continer padd2">
- <p >About</p>
- <div class="well well-sm  ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+ <!-- <p >About</p> -->
+ 
+ <p>
+  <strong>Email</strong>
+  <div class="well well-sm  "><%= @user.email %></div>
+</p>
+ 
+
+
+ <p>
+  <strong>About:</strong>
+  <%= @user.about %>
+</p>  
+ <div class="well well-sm  ">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
  
   <div class="col-md-5">
   <form>
  <div class="input-group">
-  <label >Email</label><br/>
+  <!-- <label >Email</label><br/>
   <input type="text" name="em" class="form-control" placeholder="Email"><br/>
   <label>Password</label><br/>
-  <input type="password" name="pass" class="form-control" placeholder="Password"><br/>
+  <input type="password" name="pass" class="form-control" placeholder="Password"><br/> -->
   </form> 
  </div>   
   </div>
-<div class="col-md-7">
+<!-- <div class="col-md-7">
 <p class="split-para">Friends <span><a href="" >Alt>></a></span></p>
      
      <div class="bgbox" >
@@ -56,12 +72,13 @@
       <a href=""><img src="/images/Generic-profile-image.png" class="img-circle" alt="Cinque Terre" width="110px" height="110px"></a>
       <a href=""><img src="/images/Generic-profile-image.png" class="img-circle" alt="Cinque Terre" width="110px" height="110px" ></a>
      </div>
-  </div>
-<p class="alinright"  > <a href="" >Alt>></a></p>
+  </div> -->
+<p class="alinright"  > <!-- <a href="" >Alt>></a></p> -->
 <label>Intrest</label>
+<div class="col-md-5">
 <div class="bgbox" >
-  <P><a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<br/><a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;<a href="">somelink</a>&nbsp;&nbsp;&nbsp;</P>
-
+  <P><a href="">art</a>&nbsp;&nbsp;&nbsp;<a href="">music</a>&nbsp;&nbsp;&nbsp;<a href="">reading books</a>&nbsp;&nbsp;&nbsp;<a href="">cricket</a>&nbsp;&nbsp;&nbsp;<a href="">programing</a></br>
+</div>
 </div>
  </div>
  
@@ -101,7 +118,7 @@
 
 
 
-<p>
+<!-- <p>
   <strong>Name:</strong>
   <%= @user.first_name %>
 </p>
@@ -113,7 +130,7 @@
   
   <p>
   <strong>Image:</strong>
-  <%#= image_tag @user.image %>
+  <%= image_tag @user.image %>
 </p>
 
   
@@ -121,39 +138,62 @@
   <strong>About:</strong>
   <%= @user.about %>
 </p>  
+ -->
 
 
 
 
+<!-- 
+  <% @users.each do |user| %>
+ <p>
+     <%#byebug %>
+
+    <% if Follow.where(follower_id: current_user.id, following_id:user.id).first.present? %>
 
 
-<% @users.each do |user| %>
-<p>
-    <%#byebug %>
-
-   <% if Follow.where(follower_id: current_user.id, following_id:user.id).first.present? %>
-
-
-    <%=link_to 'unfollow',  user_follows_path(user.id),  method: :post %>
-    <%= user.name %>
+     <%=link_to 'unfollow',  user_follows_path(user.id),  method: :post %>
+     <%= user.name %>
   
-   <% else %>
+    <% else %>
     
     
-    <%=link_to 'Follow',  user_follows_path(user.id),  method: :post %>
-    <%= user.name %>
+     <%=link_to 'Follow',  user_follows_path(user.id),  method: :post %>
+     <%= user.name %>
 
-  </p>
+   </p>
 
   
 
-     <%#= link_to 'Follow', {:controller =>"followers", :action =>"create", followerid: current_user.id, followingid: user.id} %>
+      <%#= link_to 'Follow', {:controller =>"followers", :action =>"create", followerid: current_user.id, followingid: user.id} %>
   
-     <% end %>
+      <% end %>
 
-<% end %>
+ <% end %>
 
 <%= link_to "Following", {controller: "follows", action: "following"} %>
-<%= link_to "Follower", {controller: "follows", action: "follower"} %>
+<%= link_to "Follower", {controller: "follows", action: "follower"} %> -->
 
 
+ 
+
+ <ul></br>
+    <% @users.each do |user| %>
+        <li>
+            <%= user.name %> |
+            <%= link_to "Add Friend", friendships_path(friend_id: user), method: :post %>
+        </li>
+    <% end %>
+</ul>
+
+# Here is a list of your pending requests
+
+<ul>
+    <% current_user.requested_friendships.each do |request| %>
+    <li>
+     
+      <%= request.name %>
+      <%= link_to "Accept",  friendship_path(id: request.id), method: "put" %>
+      <%= link_to "Decline", friendship_path(id: request.id), method: :delete %>
+    </li>
+  <% end %>
+</ul>
