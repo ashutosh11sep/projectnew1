@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   def create
-  	#sbyebug
+  	#byebug
      @friendship = current_user.friendships.build(friend_id: params[:friend_id])
       if @friendship.save
         flash[:notice] = "Friend requested."
